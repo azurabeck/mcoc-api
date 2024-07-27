@@ -1,7 +1,17 @@
 {
+  "name": "mcoc-api",
+  "version": "1.0.0",
+  "description": "API for Marvel Contest of Champions",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.5.1"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
