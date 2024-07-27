@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Champion = require('../models/Champion');
+const Champion = require('../models/champion');
 
 // GET all champions
 router.get('/', async (req, res) => {
