@@ -21,7 +21,7 @@ const AddChampion = () => {
         console.error('Erro ao adicionar campeão:', error);
       }
     } catch (error) {
-      console.error('Erro ao adicionar campeão:', error);
+      alert('Erro ao adicionar campeão:', error);
     }
     setJsonInput('')
   };

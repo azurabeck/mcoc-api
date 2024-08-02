@@ -37,15 +37,42 @@ body {
   }
   
   button {
-    padding: 10px 20px;
+    padding: 5px;
     border: none;
     border-radius: 4px;
     background-color: #28a745;
     color: white;
     cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 24px;
+    margin-top: 5px;
+    height: 25px;
+  }
+
+  button.--edit {
+      background-color: rgb(255, 136, 0);
+  }
+
+  button.--save {
+      background-color: rgb(0, 93, 233);
   }
   
+  button.--delete {
+    background-color: rgb(179, 0, 0);
+  }
+
   button:hover {
-    background-color: #218838;
+      background-color: #218838;
   }
+
+  button.--edit:hover {
+      background-color: rgb(255, 81, 0);
+  }
+
+  button.--save:hover {
+    background-color: rgb(1, 58, 143);
+  }  
   
+  button.--delete:hover {
+    background-color: rgb(139, 0, 0);
+  }

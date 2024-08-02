@@ -1,93 +1,75 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import '../styles/Navbar.css'; // Import the CSS file
 
-const Navbar = ({ handleCategoryFilter, handleSearch, handleSort }) => {
+const Navbar = ({ handleCategoryFilter, handleSearch, handleSort, activeCategory }) => {
+  const location = useLocation();
+
   return (
-    <nav style={styles.nav}>
-      <ul style={styles.ul}>
-        <li style={styles.li}>
-          <Link to="/" style={styles.link}>Home</Link>
+    <nav className="nav">
+      <ul className="ul">
+        <li className="li">
+          <NavLink to="/" className={({ isActive }) => isActive ? "link active" : "link"}>Lista de campeões</NavLink>
         </li>
-        <li style={styles.li}>
-          <Link to="/add" style={styles.link}>Adicionar Campeão</Link>
+        <li className="li">
+          <NavLink to="/add" className={({ isActive }) => isActive ? "link active" : "link"}>Adicionar Campeão</NavLink>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Mutante')} style={styles.button}>Mutante</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Mutante')} 
+            className={activeCategory === 'Mutante' ? 'buttonNav active' : 'buttonNav'}
+          >Mutante</button>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Cósmico')} style={styles.button}>Cósmico</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Cósmico')} 
+            className={activeCategory === 'Cósmico' ? 'buttonNav active' : 'buttonNav'}
+          >Cósmico</button>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Tecnológico')} style={styles.button}>Tecnológico</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Tecnológico')} 
+            className={activeCategory === 'Tecnológico' ? 'buttonNav active' : 'buttonNav'}
+          >Tecnológico</button>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Habilidade')} style={styles.button}>Habilidade</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Habilidade')} 
+            className={activeCategory === 'Habilidade' ? 'buttonNav active' : 'buttonNav'}
+          >Habilidade</button>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Científico')} style={styles.button}>Científico</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Científico')} 
+            className={activeCategory === 'Científico' ? 'buttonNav active' : 'buttonNav'}
+          >Científico</button>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Místico')} style={styles.button}>Místico</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Místico')} 
+            className={activeCategory === 'Místico' ? 'buttonNav active' : 'buttonNav'}
+          >Místico</button>
         </li>
-        <li style={styles.li}>
-          <button onClick={() => handleCategoryFilter('Universal')} style={styles.button}>Universal</button>
+        <li className="li">
+          <button 
+            onClick={() => handleCategoryFilter('Universal')} 
+            className={activeCategory === 'Universal' ? 'buttonNav active' : 'buttonNav'}
+          >Universal</button>
         </li>
       </ul>
       <input
         type="text"
         placeholder="Pesquisar Campeão"
         onChange={(e) => handleSearch(e.target.value)}
-        style={styles.search}
+        className="search"
       />
-      <select onChange={(e) => handleSort(e.target.value)} style={styles.sort}>
+      <select onChange={(e) => handleSort(e.target.value)} className="sort">
         <option value="">Ordenar por</option>
         <option value="asc">Nome (A-Z)</option>
         <option value="desc">Nome (Z-A)</option>
       </select>
     </nav>
   );
-};
-
-const styles = {
-  nav: {
-    backgroundColor: '#333',
-    padding: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  ul: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    justifyContent: 'space-around',
-  },
-  li: {
-    display: 'inline',
-    margin: '0 10px',
-  },
-  link: {
-    color: 'white',
-    textDecoration: 'none',
-    fontSize: '18px',
-  },
-  button: {
-    backgroundColor: '#555',
-    color: 'white',
-    border: 'none',
-    padding: '10px',
-    cursor: 'pointer',
-  },
-  search: {
-    padding: '10px',
-    fontSize: '16px',
-  },
-  sort: {
-    padding: '10px',
-    fontSize: '16px',
-    marginLeft: '10px',
-  }
 };
 
 export default Navbar;

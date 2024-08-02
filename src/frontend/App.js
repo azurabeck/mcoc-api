@@ -4,14 +4,16 @@ import Navbar from './components/Navbar';
 import AddChampion from './components/AddChampion';
 import ChampionList from './components/ChampionList';
 import ChampionDetails from './components/ChampionDetails';
-import EditChampion from './components/EditChampion';
+import './index.css'
 
 const App = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('');
+  const [activeCategory, setActiveCategory] = useState('');
 
   const handleCategoryFilter = (category) => {
+    setActiveCategory(category);
     setCategoryFilter(category);
   };
 
@@ -27,9 +29,10 @@ const App = () => {
     <Router>
       <div>
         <Navbar
-          handleCategoryFilter={handleCategoryFilter}
-          handleSearch={handleSearch}
-          handleSort={handleSort}
+           handleCategoryFilter={handleCategoryFilter} 
+           handleSearch={handleSearch} 
+           handleSort={handleSort}
+           activeCategory={activeCategory}
         />
         <h1>Marvel Contest of Champions API</h1>
         <Routes>
@@ -38,7 +41,6 @@ const App = () => {
             element={<ChampionList categoryFilter={categoryFilter} searchTerm={searchTerm} sortOrder={sortOrder} />}
           />
           <Route path="/champions/:id" element={<ChampionDetails />} />
-          <Route path="/champions/edit/:id" element={<EditChampion />} />
           <Route path="/add" element={<AddChampion />} />
         </Routes>
       </div>

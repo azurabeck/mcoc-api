@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/ChampionList.css'; 
 
 const ChampionList = ({ categoryFilter, searchTerm, sortOrder }) => {
   const [champions, setChampions] = useState([]);
@@ -13,15 +14,15 @@ const ChampionList = ({ categoryFilter, searchTerm, sortOrder }) => {
 
   const filteredChampions = champions
     .filter((champion) => {
-      const matchesCategory = categoryFilter ? champion.category === categoryFilter : true;
-      const matchesSearch = champion.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = categoryFilter ? champion.categoria === categoryFilter : true;
+      const matchesSearch = searchTerm ? champion.nome.toLowerCase().includes(searchTerm.toLowerCase()) : true;
       return matchesCategory && matchesSearch;
     })
     .sort((a, b) => {
       if (sortOrder === 'asc') {
-        return a.name.localeCompare(b.name);
+        return a.nome.localeCompare(b.nome);
       } else if (sortOrder === 'desc') {
-        return b.name.localeCompare(a.name);
+        return b.nome.localeCompare(a.nome);
       } else {
         return 0;
       }
@@ -44,22 +45,19 @@ const ChampionList = ({ categoryFilter, searchTerm, sortOrder }) => {
 
   return (
     <div>
-      <h2>Lista de Campeões</h2>
-      <ul>
+      <p className="list-description">Exibindo: {filteredChampions.length} campeões</p>
+      <ul className="champion-list">
         {filteredChampions.map((champion) => (
-          <li key={champion._id}>
-            <img src={champion.avatarUrl} alt={`${champion.name} avatar`} width="50" height="50" />
-            <h3>{champion.name}</h3>
-            <p>Categoria: {champion.category}</p>
-            <p>Attack: {champion.attackTier}</p>
-            <p>Defence: {champion.defenceTier}</p>
-            <button onClick={() => handleDelete(champion._id)}>Deletar</button>
+          <li key={champion._id} className="champion-item">
+            <img src={champion.avatarUrl} alt={`${champion.nome} avatar`} width="50" height="50" />
+            <h3>{champion.nome}</h3>
+            <p>Categoria: {champion.categoria}</p>
+            <p>Attack: {champion.tier_attack}</p>
+            <p>Defence: {champion.tier_defense}</p>
             <Link to={`/champions/${champion._id}`}>
-              <button>Ver Detalhes</button>
+              <button className='--save'>Ver Detalhes</button>
             </Link>
-            <Link to={`/champions/edit/${champion._id}`}>
-              <button>Editar</button>
-            </Link>
+            <button className='--delete' onClick={() => handleDelete(champion._id)}>Deletar</button>
           </li>
         ))}
       </ul>
